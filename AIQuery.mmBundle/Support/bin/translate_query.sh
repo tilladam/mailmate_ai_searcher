@@ -18,4 +18,4 @@ TRANSLATED=$("$BIN" "$QUERY")
 ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$TRANSLATED'''))")
 
 # Open clean search in MailMate
-open "mailmate://search?query=$ENCODED"
+open "mlmt:quicksearch?string=$ENCODED"
