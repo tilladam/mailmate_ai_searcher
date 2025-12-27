@@ -1,0 +1,8 @@
+{
+	"contactEmailRot13" = "till@adam-eclectics.com";
+	"contactName" = "Till Adam";
+	"description" = "This MailMate bundle integrates AI-powered search into MailMate.";
+	"name" = "AIQuery";
+	"uuid" = "27E35DC1-8171-4B56-A4AD-01875D2DE58C";
+	"CFBundleVersion" = "1.0.0";
+}
