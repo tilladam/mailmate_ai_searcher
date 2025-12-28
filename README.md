@@ -30,6 +30,4 @@ After installation, strictly **restart MailMate**.
 3. Enter your natural language query (e.g. "Emails from Steve last week").
 4. MailMate will open a search window with the translated query.
 
-## Customization
-The translation logic is currently located in `AIQueryTranslator/Sources/AIQueryTranslator/AIQueryTranslator.swift`.
-To use the real `FoundationModels` API, edit that file to call the framework methods.
+
