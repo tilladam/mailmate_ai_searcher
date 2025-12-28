@@ -1,2 +1,3 @@
 .vscode/launch.json
 AIQuery.mmBundle/Support/bin/AIQueryTranslator
+.DS_Store
