@@ -3,6 +3,8 @@ set -e
 
 echo "Building AIQueryTranslator..."
 cd AIQueryTranslator
+# Clean the build directory to avoid module cache path issues after directory rename
+swift package clean
 swift build -c release
 cd ..
 
