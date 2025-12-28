@@ -1,5 +1,7 @@
 import ArgumentParser
+import CoreTranslator
 import Foundation
+import FoundationModels  // New in iOS 26 / macOS 26.[web:25]
 
 @main
 struct AIQueryTranslator: ParsableCommand {
@@ -7,37 +9,33 @@ struct AIQueryTranslator: ParsableCommand {
         abstract: "Translates natural language to MailMate queries using local AI."
     )
 
-    @Argument(help: "The natural language query to translate.")
-    var query: String
+    @Argument(parsing: .captureForPassthrough, help: "The natural language query to translate.")
+    var queryWords: [String] = []
 
-    mutating func run() throws {
-        // Placeholder for Foundation Models Framework integration
-        let translatedQuery = translate(query)
-        print(translatedQuery)
+    var query: String {
+        queryWords.joined(separator: " ")
     }
 
-    func translate(_ input: String) -> String {
-        // TODO: Integrate actual Foundation Models Framework here.
-        // For now, simple keyword matching as a fallback/mock.
+    mutating func run() throws {
+        let sema = DispatchSemaphore(value: 0)
 
-        var parts: [String] = []
-        let lower = input.lowercased()
+        let promptQuery = query  // capture
 
-        if lower.contains("from steve") {
-            parts.append("from:\"Steve\"")
+        if #available(macOS 26.0, *) {
+            Task {
+                do {
+                    let translator = CoreTranslator()
+                    let translatedQuery = try await translator.translate(promptQuery)
+                    print(translatedQuery)
+                } catch {
+                    // Fallback or print error
+                    print("subject:\"\(promptQuery)\"")
+                }
+                sema.signal()
+            }
+            sema.wait()
+        } else {
+            print("subject:\"\(promptQuery)\"")
         }
-        if lower.contains("last week") {
-            parts.append("date:last_week")
-        }
-        if lower.contains("pdf") {
-            parts.append("filename.extension:pdf")
-        }
-
-        if parts.isEmpty {
-            // detailed tracing?
-            return "subject:\"\(input)\""
-        }
-
-        return parts.joined(separator: " ")
     }
 }
