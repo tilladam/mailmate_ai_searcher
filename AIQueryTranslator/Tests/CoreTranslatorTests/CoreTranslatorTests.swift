@@ -17,12 +17,14 @@ final class CoreTranslatorTests: XCTestCase {
             ("emails from Alice", ["f", "alice"]),
             ("subject contains invoice", ["s", "invoice"]),
             ("to Bob", ["t", "bob"]),
+            ("Butterbrot", ["butterbrot"]),
             ("received 2023-01-01", ["d", "2023-01-01"]),
             ("last 7 days", ["d", "7d"]),
             ("from Alice or Bob", ["or"]),
             ("not from Steve", ["!", "steve"]),
             ("from Alice about invoices last week", ["f", "alice", "d"]),
             ("tagged urgent", ["T", "urgent"]),
+            ("with pdf attachments", ["A pdf"]),
             ("with attachments", ["A"]),
         ]
 
