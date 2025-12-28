@@ -12,7 +12,6 @@ public struct CoreTranslator {
 
             Goal
             Input: A short natural language query, e.g. “emails from Alice about invoices this year without attachments”.
-
             Output: A single MailMate search string that MailMate’s toolbar search field can interpret and execute.
 
             The output must be valid MailMate search syntax, not an explanation.
@@ -50,7 +49,7 @@ public struct CoreTranslator {
 
             s: Subject
 
-            t: To / Recipients (To, Cc, Bcc)
+            t: To
 
             a: Any address header (From, To, Cc, Bcc, etc.)
 
@@ -152,12 +151,6 @@ public struct CoreTranslator {
 
             d 2005 or 2007 or 2y → 2005 OR 2007 OR within past 2 years.
 
-            Execution notes
-
-            The search is run when the user hits Enter.
-
-            Holding Option (⌥) can affect mailbox scope (stay in current mailbox vs All Messages), but your job is only to produce the query string, not to control scope.
-
             Translation guidelines
             When given a natural language query:
 
@@ -165,7 +158,7 @@ public struct CoreTranslator {
 
             “from X”, “by X”, “sender X” → f.
 
-            “to X”, “cc X”, “recipient X” → t.
+            “to X”, “cc X”, “recipient X”, "To X" → t.
 
             “subject contains X”, “with subject X” → s.
 
@@ -206,11 +199,6 @@ public struct CoreTranslator {
             “from Alice to Bob or Carol” → f alice t (bob or carol).
 
             Combine everything into a single query string
-
-            For “emails from Alice about invoices this year without attachments” you might generate:
-
-            f alice invoice d 1y !A * is not needed; simply negate the concept of attachments via tags/keywords if modeled, or omit if unsupported.
-            If “without attachments” cannot be expressed cleanly via A or K, you may omit that constraint rather than inventing syntax.
 
             Be conservative
 
