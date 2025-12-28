@@ -1,12 +1,8 @@
 {
-	"command" = "#!/bin/bash
-\"$MM_BUNDLE_SUPPORT/bin/translate_query.sh\"
-";
-	"name" = "AI Search...";
-	"uuid" = "F0B89D93-0DF5-464E-8120-8A059E89C969";
-	"input" = "none";
-	"output" = "discard";
-    "environment" = {
-        "MM_BUNDLE_SUPPORT" = "$MM_BUNDLE_SUPPORT";
-    };
+	command = "#!/bin/bash\n\"$MM_BUNDLE_SUPPORT/bin/translate_query.sh\"";
+	name = "AI Search";
+	uuid = "F0B89D93-0DF5-464E-8120-8A059E89C969";
+	input = "none";
+	output = "discard";
+	keyEquivalent = "^S";
 }
